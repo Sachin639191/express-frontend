@@ -1,24 +1,12 @@
 pipeline {
     agent any
 
-    /* 
-       Option A: Use if NodeJS is configured in Manage Jenkins -> Tools
-       tools {
-           nodejs 'NodeJS'
-       }
-    */
-
     stages {
-        stage('Checkout') {
-            steps {
-                // Update URL to match your repo (e.g. https://github.com/Sachin639191/flask-backend.git)
-                git branch: 'main', url: 'https://github.com/Sachin639191/flask-backend.git'
-            }
-        }
-        
+        // Remove or clear the redundant git stage, or just use it for explicit checks
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                // Using --prefer-offline or --no-audit speeds up npm install significantly
+                sh 'npm install --prefer-offline --no-audit'
             }
         }
         
