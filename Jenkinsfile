@@ -1,22 +1,27 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS'   // You will create this name in Jenkins
-    }
+    /* 
+       Option A: Use if NodeJS is configured in Manage Jenkins -> Tools
+       tools {
+           nodejs 'NodeJS'
+       }
+    */
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/YOUR_GITHUB_USERNAME/express-frontend.git'
+                // Update URL to match your repo (e.g. https://github.com/Sachin639191/flask-backend.git)
+                git branch: 'main', url: 'https://github.com/Sachin639191/flask-backend.git'
             }
         }
+        
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
             }
         }
+        
         stage('Deploy') {
             steps {
                 sh '''
